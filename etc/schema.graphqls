@@ -1,0 +1,126 @@
+# MageINIC
+# Copyright (C) 2023 MageINIC <support@mageinic.com>
+#
+# NOTICE OF LICENSE
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+#
+# Do not edit or add to this file if you wish to upgrade this extension to newer
+# version in the future.
+#
+# @category MageINIC
+# @package MageINIC_TestimonialGraphQl
+# @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+# @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+# @author MageINIC <support@mageinic.com>
+
+type StoreConfig {
+    testimonial_enable: String @doc(description: "Enable Testimonial")
+    testimonial_enable_form: String @doc(description: "Enable Testimonial submit functionality on frontend")
+    testimonial_enable_heading: String @doc(description: "Enable Testimonial Slider heading on frontend")
+    testimonial_heading: String @doc(description: "Testimonial Slider Heading")
+    testimonial_sub_heading: String @doc(description: "Testimonial Slider Sub-Heading")
+    testimonial_enable_recaptcha: String @doc(description: "Enable Recaptcha on testimonial form")
+    testimonial_enable_slider: String @doc(description: "Enable Testimonial slider")
+    testimonial_enable_website: String @doc(description: "Enable website field in form")
+    testimonial_slide_arrow: String @doc(description: "Enable arrow on slider")
+    testimonial_slide_dots: String @doc(description: "Enable dots on slider")
+    testimonial_slide_infinite_looping: String @doc(description: "Enable infinite looping")
+    testimonial_slide_autoplay: String @doc(description: "Enable slider autoplay")
+    testimonial_slider_autoplay_speed: String @doc(description: "Slider auto play speed")
+    testimonial_default_slide: String @doc(description: "Set testimonial per default Slide to scroll")
+    testimonial_default_slick: String @doc(description: "Set testimonial per default Slicks to scroll")
+    testimonial_slider_speed: String @doc(description: "Slider speed")
+    testimonial_slider_breakpoints: String @doc(description: "Slider responsive Breakpoints")
+    testimonial_slider_design: String @doc(description: "Testimonial slider design")
+}
+
+type Query {
+    TestimonialList(
+        filter: TestimonialFilterInput
+        @doc(description: "Identifies which columns to search for and return.")
+        pageSize: Int = 6
+        @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+        currentPage: Int = 1
+        @doc(description: "Specifies which page of results to return. The default value is 1.")
+    ): Testimonial
+    @resolver(class: "\\MageINIC\\TestimonialGraphQl\\Model\\Resolver\\TestimonialList")
+    @doc(description: "The Testimonial query returns the Testimonial according to passed arguments(filter)")
+    @cache(cacheIdentity: "MageINIC\\TestimonialGraphQl\\Model\\Resolver\\Testimonial\\Identity")
+}
+
+type TestimonialOutput @doc(
+    description: "Contains details about a newly-created or updated testimonial."){
+    testimonial_id: Int @doc(description: "Entity id")
+    email: String @doc(description: "Email")
+    title: String @doc(description: "Title")
+    content: String @doc(description: "Content")
+    rating: Int @doc(description: "Rating")
+    company: String @doc(description: "Company")
+    website: String @doc(description: "Company's Website Url")
+    designation: String @doc(description: "Designation")
+    first_name: String @doc(description: "First Name")
+    image_url: String @doc(description: "Image Url Path")
+    image_name: String @doc(description: "Image Name")
+    last_name: String @doc(description: "Last Name")
+    enable: String @doc(description: "testimonial status")
+}
+
+input TestimonialFilterInput @doc(description: "A filter the value that is being searched for.") {
+    testimonial_id: FilterTypeInput @doc(description: "Entity id")
+    email: FilterTypeInput @doc(description: "Email")
+    title: FilterTypeInput @doc(description: "Title")
+    rating: FilterTypeInput @doc(description: "Rating")
+    company: FilterTypeInput @doc(description: "Company")
+    website: FilterTypeInput @doc(description: "Company's Website Url")
+    designation: FilterTypeInput @doc(description: "Designation")
+    first_name: FilterTypeInput @doc(description: "First Name")
+    last_name: FilterTypeInput @doc(description: "Last Name")
+    uploaded_file: FilterTypeInput @doc(description: "Uploaded File name")
+    enable: FilterTypeInput @doc(description: "enable status Enable='1' Disable='0'")
+}
+
+type Testimonial @doc(
+    description: "The Testimonial Data is the top-level object returned in a Testimonial search filter") {
+    total_count: Int @doc(description: "Total count")
+    total_pages: Int @doc(description: "Total count")
+    testimonialList: [TestimonialOutput]
+}
+
+type Mutation {
+    CreateTestimonial(
+        input: TestimonialInput! @doc(description: "An input object that defines the testimonial to be created.")
+    ): TestimonialOutput
+    @resolver(class: "\\MageINIC\\TestimonialGraphQl\\Model\\Resolver\\CreateTestimonial")
+    @doc(description: "Create Testimonial")
+    UpdateTestimonial(
+        id: Int! @doc(description: "The ID assigned to the Testimonial."),
+        input: TestimonialInput! @doc(description: "An input object that contains changes to the testimonial.")
+    ): TestimonialOutput
+    @resolver(class: "\\MageINIC\\TestimonialGraphQl\\Model\\Resolver\\UpdateTestimonial")
+    @doc(description: "Update Testimonial")
+}
+
+input TestimonialInput @doc(description: "Add testimonial Input") {
+    email: String @doc(description: "Email")
+    title: String @doc(description: "Title")
+    content: String @doc(description: "Content")
+    rating: Int @doc(description: "Rating")
+    company: String @doc(description: "Company")
+    designation: String @doc(description: "Designation")
+    first_name: String @doc(description: "First Name")
+    last_name: String @doc(description: "Last Name")
+    website: String @doc(description: "Company's Website Url")
+    uploaded_file: [ImageInput]
+}
+
+input ImageInput @doc(description: "upload Image through Base64.") {
+    image_name: String!
+    image_base64: String!
+}

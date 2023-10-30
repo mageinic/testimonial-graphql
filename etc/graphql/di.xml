@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageINIC
+ * Copyright (C) 2023 MageINIC <support@mageinic.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category MageINIC
+ * @package MageINIC_TestimonialGraphQl
+ * @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+ * @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MageINIC <support@mageinic.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\StoreGraphQl\Model\Resolver\Store\StoreConfigDataProvider">
+        <arguments>
+            <argument name="extendedConfigData" xsi:type="array">
+                <item name="testimonial_enable" xsi:type="string">testimonial/general/enable_frontend</item>
+                <item name="testimonial_enable_in_home" xsi:type="string">testimonial/general/enable_in_homepage</item>
+                <item name="testimonial_enable_heading" xsi:type="string">testimonial/general/enable_heading</item>
+                <item name="testimonial_heading" xsi:type="string">testimonial/general/heading</item>
+                <item name="testimonial_sub_heading" xsi:type="string">testimonial/general/meta_heading</item>
+                <item name="testimonial_enable_recaptcha" xsi:type="string">testimonial/general/enable_recaptcha</item>
+                <item name="testimonial_enable_slider" xsi:type="string">testimonial/general/enable_slider</item>
+                <item name="testimonial_enable_website" xsi:type="string">testimonial/general/enable_website</item>
+                <item name="testimonial_enable_form" xsi:type="string">testimonial/general/enable_form</item>
+                <item name="testimonial_slide_arrow" xsi:type="string">testimonial/slider/arrow_slider</item>
+                <item name="testimonial_slide_dots" xsi:type="string">testimonial/slider/dots_slider</item>
+                <item name="testimonial_slide_infinite_looping"
+                      xsi:type="string">testimonial/slider/infinite_looping</item>
+                <item name="testimonial_slide_autoplay" xsi:type="string">testimonial/slider/autoplay</item>
+                <item name="testimonial_slider_autoplay_speed"
+                      xsi:type="string">testimonial/slider/autoplay_speed</item>
+                <item name="testimonial_default_slide" xsi:type="string">testimonial/slider/default_slide</item>
+                <item name="testimonial_default_slick" xsi:type="string">testimonial/slider/default_slick</item>
+                <item name="testimonial_slider_speed" xsi:type="string">testimonial/slider/slider_speed</item>
+                <item name="testimonial_slider_breakpoints" xsi:type="string">testimonial/slider/breakpoint_field</item>
+                <item name="testimonial_slider_design" xsi:type="string">testimonial/slider/design_options</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
