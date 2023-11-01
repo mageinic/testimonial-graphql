@@ -1,6 +1,6 @@
 {
   "name": "mageinic/tetimonial-graph-ql",
-    "description": "The \"Testimonials GraphQl Extension\" is a software enhancement created by MageINIC Team, intended to enable the integration of GraphQL technology for efficiently managing and displaying customer testimonials on websites.",
+    "description": "Testimonial GraphQL is a part of MageINIC Testimonial extension that adds GraphQL features. This extension extends Testimonial definitions.",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
