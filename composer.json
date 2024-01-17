@@ -1,5 +1,5 @@
 {
-  "name": "mageinic/tetimonial-graph-ql",
+  "name": "mageinic/tetimonial-graphql",
     "description": "Testimonial GraphQL is a part of MageINIC Testimonial extension that adds GraphQL features. This extension extends Testimonial definitions.",
     "type": "magento2-module",
     "license": [
